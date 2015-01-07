@@ -1,4 +1,4 @@
-<h2>Add New User</h2>
+<h2>Edit User</h2>
 
 <%= form_for [:admin, @user] do |f| %>
 	<!-- Check for errors -->
@@ -20,8 +20,8 @@
 	</div>
 
 	<div class="form-group">
-		<%= f.label :password %>
-    	<%= f.password_field :password, class:'form-control' %>
+		<%= f.label :new_password %>
+    	<%= f.password_field :new_password, class:'form-control' %>
 	</div>
 
 	<div class="form-group">

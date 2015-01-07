@@ -1,35 +1,21 @@
-
-
-    <section>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="well">
-              <h2 class="page-header">Manage Users <a href="new.html" class="btn btn-success">Add New</a></h2>
-              <table class="table table-striped">
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Actions</th>
-                </tr>
-                <tr>
-                  <td>John Doe</td>
-                  <td>johndoe@gmail.com</td>
-                  <td><a href="#" class="btn btn-primary">Edit</a> <a href="#" class="btn btn-danger">Delete</a></td>
-                </tr>
-                <tr>
-                  <td>Jane Doe</td>
-                  <td>janedoe@yahoo.com</td>
-                  <td><a href="#" class="btn btn-primary">Edit</a> <a href="#" class="btn btn-danger">Delete</a></td>
-                </tr>
-                <tr>
-                  <td>Thomas Smith</td>
-                  <td>tsmith@gmail.com</td>
-                  <td><a href="#" class="btn btn-primary">Edit</a> <a href="#" class="btn btn-danger">Delete</a></td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<h2 class="page-header">Users <%=link_to "Create New", new_admin_user_path, class:'btn btn-success pull-right' %></h2>
+<% if @users.exists? %>
+  <table class="table table-striped">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Date Created</th>
+      <th>Actions</th>
+    </tr>
+    <% @users.each do |user| %>
+    <tr>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.created_at.to_time.strftime('%B %e at %l:%M %p') %>
+          <td><%=link_to "Edit", edit_admin_user_path(user), class:'btn btn-primary' %> <%=link_to "Delete", admin_user_path(user), class:'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+  </table>
+<% else %>
+  <p>There are no users</p>
+<% end %>
