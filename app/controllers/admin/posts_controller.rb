@@ -40,7 +40,11 @@ class Admin::PostsController < Admin::ApplicationController
   end
 
   def index
-    @posts = Post.all
+    if params[:search]
+      @posts = Post.search(params[:search]).all
+    else
+      @posts = Post.all
+    end
   end
 
   private
@@ -48,3 +52,4 @@ class Admin::PostsController < Admin::ApplicationController
     params.require(:post).permit(:title, :category_id, :user_id, :tags, :image, :body)
   end
 end
+

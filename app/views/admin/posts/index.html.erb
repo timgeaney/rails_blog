@@ -1,5 +1,7 @@
 <h2 class="page-header">Posts <%=link_to "Create New", new_admin_post_path, class:'btn btn-success pull-right' %></h2>
-<% if @posts.exists? %>
+<!-- this hack need to be fixed can't call exists? method on arrays ruby????? -->
+
+<% if !(@posts.empty?) %>
   <table class="table table-striped">
     <tr>
       <th>Post Title</th>
