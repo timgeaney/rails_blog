@@ -41,9 +41,9 @@ class Admin::PostsController < Admin::ApplicationController
 
   def index
     if params[:search]
-      @posts = Post.search(params[:search]).all
+      @posts = Post.search(params[:search]).all.paginate(:per_page => 20, :page => params[:page])
     else
-      @posts = Post.all
+      @posts = Post.all.paginate(:per_page => 2, :page => params[:page])
     end
   end
 

@@ -1,7 +1,7 @@
 <h2 class="page-header">Posts <%=link_to "Create New", new_admin_post_path, class:'btn btn-success pull-right' %></h2>
 <!-- this hack need to be fixed can't call exists? method on arrays ruby????? -->
 
-<% if !(@posts.empty?) %>
+<% unless @posts.empty? %>
   <table class="table table-striped">
     <tr>
       <th>Post Title</th>
@@ -18,6 +18,8 @@
         </tr>
       <% end %>
   </table>
+
+  <%= will_paginate @posts %>
 <% else %>
     <p>There are no posts</p>
 <% end %>

@@ -40,7 +40,11 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def index
-    @users = User.all
+    if params[:search]
+      @users = User.search(params[:search]).paginate(:per_page => 20, :page => params[:page])
+    else
+      @users = User.all.order('created_at DESC').paginate(:per_page => 2, :page => params[:page])
+    end
   end
 
   private
